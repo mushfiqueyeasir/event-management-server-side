@@ -1,32 +1,12 @@
 const eventsService = require("../services/events.service");
+const { search } = require("../utils/search");
 
 module.exports.getAllEvents = async (req, res) => {
   try {
     const { title, location, startDate, endDate, limit, page, email } =
       req.query;
     const result = await eventsService.getEvents();
-    let paginationResult = result;
-
-    if (email) {
-      paginationResult = result.filter((item) => item.eventCreator === email);
-    }
-    if (title) {
-      paginationResult = result.filter((item) =>
-        item.eventTitle.toLowerCase().includes(title.toLowerCase())
-      );
-    }
-    if (location) {
-      paginationResult = result.filter(
-        (item) => item.eventLocation === location
-      );
-    }
-
-    if (page || limit) {
-      paginationResult = result.slice(
-        ((page ? page : 1) - 1) * (limit ? limit : 10),
-        (page ? page : 1) * (limit ? limit : 10)
-      );
-    }
+    let paginationResult = search(req.query, result);
 
     res.status(200).json({
       success: true,

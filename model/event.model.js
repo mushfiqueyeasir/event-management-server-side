@@ -29,11 +29,11 @@ const eventSchema = mongoose.Schema(
       ],
     },
     startDate: {
-      type: String,
+      type: Date,
       required: [true, "Please Provide Event Start Date!"],
     },
     endDate: {
-      type: String,
+      type: Date,
       required: [true, "Please Provide Event Start Date!"],
     },
     startTime: {
