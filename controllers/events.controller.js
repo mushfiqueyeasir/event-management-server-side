@@ -2,11 +2,23 @@ const eventsService = require("../services/events.service");
 
 module.exports.getAllEvents = async (req, res) => {
   try {
-    const { limit, page, email } = req.query;
+    const { title, location, startDate, endDate, limit, page, email } =
+      req.query;
     const result = await eventsService.getEvents();
     let paginationResult = result;
+
     if (email) {
       paginationResult = result.filter((item) => item.eventCreator === email);
+    }
+    if (title) {
+      paginationResult = result.filter((item) =>
+        item.eventTitle.toLowerCase().includes(title.toLowerCase())
+      );
+    }
+    if (location) {
+      paginationResult = result.filter(
+        (item) => item.eventLocation === location
+      );
     }
 
     if (page || limit) {
