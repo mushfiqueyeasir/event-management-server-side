@@ -9,10 +9,8 @@ app.use(express.json());
 app.use(errorHandler);
 
 // route
-const usersRoutes = require("./routes/v1/users.routes");
 const eventsRoutes = require("./routes/v1/events.routes");
 
-app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/events", eventsRoutes);
 
 app.get("/", (req, res) => {
