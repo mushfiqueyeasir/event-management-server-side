@@ -1,17 +1,14 @@
 module.exports.search = (query, data) => {
-  const { title, location, startDate, endDate, limit, page, email } = query;
+  const { search, startDate, endDate, limit, page, email } = query;
   let paginationResult = data;
   if (email) {
     paginationResult = data.filter((item) => item.eventCreator === email);
   }
-  if (title) {
-    paginationResult = data.filter((item) =>
-      item.eventTitle.toLowerCase().includes(title.toLowerCase())
-    );
-  }
-  if (location) {
-    paginationResult = data.filter((item) =>
-      item.eventLocation.toLowerCase().includes(location.toLowerCase())
+  if (search) {
+    paginationResult = data.filter(
+      (item) =>
+        item.eventTitle.toLowerCase().includes(search.toLowerCase()) ||
+        item.eventLocation.toLowerCase().includes(search.toLowerCase())
     );
   }
 
