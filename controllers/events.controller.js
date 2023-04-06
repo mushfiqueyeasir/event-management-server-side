@@ -3,16 +3,14 @@ const { search } = require("../utils/search");
 
 module.exports.getAllEvents = async (req, res) => {
   try {
-    const { title, location, startDate, endDate, limit, page, email } =
-      req.query;
     const result = await eventsService.getEvents();
     let paginationResult = search(req.query, result);
 
     res.status(200).json({
       success: true,
       message: "Events Successfully Found!",
-      dataLength: result.length,
-      pageLength: Math.ceil(result.length / 10),
+      dataLength: paginationResult.length,
+      pageLength: Math.ceil(paginationResult.length / 10),
       data: paginationResult,
     });
   } catch (error) {
