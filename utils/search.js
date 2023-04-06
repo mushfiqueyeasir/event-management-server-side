@@ -1,5 +1,5 @@
 module.exports.search = (query, data) => {
-  const { search, startDate, endDate, limit, page, email } = query;
+  const { search, startDate, endDate, page, email } = query;
   let paginationResult = data;
   if (email) {
     paginationResult = data.filter((item) => item.eventCreator === email);
@@ -12,10 +12,10 @@ module.exports.search = (query, data) => {
     );
   }
 
-  if (page || limit) {
+  if (page) {
     paginationResult = data.slice(
-      ((page ? page : 1) - 1) * (limit ? limit : 10),
-      (page ? page : 1) * (limit ? limit : 10)
+      ((page ? page : 1) - 1) * 10,
+      (page ? page : 1) * 10
     );
   }
 

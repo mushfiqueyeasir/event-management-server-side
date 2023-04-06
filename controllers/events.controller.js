@@ -12,7 +12,7 @@ module.exports.getAllEvents = async (req, res) => {
       success: true,
       message: "Events Successfully Found!",
       dataLength: result.length,
-      pageLength: Math.ceil(result.length / (limit ? limit : 10)),
+      pageLength: Math.ceil(result.length / 10),
       data: paginationResult,
     });
   } catch (error) {
