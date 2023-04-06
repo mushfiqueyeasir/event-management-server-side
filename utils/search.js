@@ -10,7 +10,9 @@ module.exports.search = (query, data) => {
     );
   }
   if (location) {
-    paginationResult = data.filter((item) => item.eventLocation === location);
+    paginationResult = data.filter((item) =>
+      item.eventLocation.toLowerCase().includes(location.toLowerCase())
+    );
   }
 
   if (page || limit) {
