@@ -11,6 +11,7 @@ module.exports.getAllEvents = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Events Successfully Found!",
+      dataLength: result.length,
       pageLength: Math.ceil(result.length / (limit ? limit : 10)),
       data: paginationResult,
     });
