@@ -1,5 +1,5 @@
 module.exports.search = (query, data) => {
-  const { search, startDate, endDate, page, email } = query;
+  const { search, startDate, endDate, email } = query;
   let paginationResult = data;
   if (email) {
     paginationResult = paginationResult.filter(
@@ -11,13 +11,6 @@ module.exports.search = (query, data) => {
       (item) =>
         item.eventTitle.toLowerCase().includes(search.toLowerCase()) ||
         item.eventLocation.toLowerCase().includes(search.toLowerCase())
-    );
-  }
-
-  if (page) {
-    paginationResult = paginationResult.slice(
-      ((page ? page : 1) - 1) * 10,
-      (page ? page : 1) * 10
     );
   }
 
