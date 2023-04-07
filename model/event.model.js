@@ -39,14 +39,12 @@ const eventSchema = mongoose.Schema(
     startTime: {
       type: String,
       required: [true, "Please Provide Event Start Time!"],
-      min: [1, "Minimum Start Time Must Be 4 Character"],
-      maxLength: [4, "Maximum  Start Time Must Be 4 Character"],
+      maxLength: [5, "Maximum  Start Time Must Be 5 Character"],
     },
     endTime: {
       type: String,
       required: [true, "Please Provide Event Start Time!"],
-      min: [1, "Minimum End Time Must Be 4 Character"],
-      maxLength: [4, "Maximum End Time Must Be 4 Character"],
+      maxLength: [5, "Maximum End Time Must Be 5 Character"],
     },
     eventView: {
       type: Number,
