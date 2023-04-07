@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const eventSchema = mongoose.Schema(
   {
+    eventImage: {
+      type: String,
+    },
+
     eventTitle: {
       type: String,
       required: [true, "Please Provide Event Title!"],
