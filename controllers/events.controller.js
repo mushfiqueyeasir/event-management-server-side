@@ -20,7 +20,7 @@ module.exports.getAllEvents = async (req, res) => {
       dataLength: queryResult.length,
       currentPageDataLength: paginationResult.length,
       pageLength: Math.ceil(queryResult.length / 10),
-      data: paginationResult,
+      data: paginationResult.reverse(),
     });
   } catch (error) {
     res.status(400).json({
