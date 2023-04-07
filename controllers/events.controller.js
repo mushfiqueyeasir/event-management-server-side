@@ -4,7 +4,7 @@ const { search } = require("../utils/search");
 module.exports.getAllEvents = async (req, res) => {
   try {
     const { page } = req.query;
-    const result = await eventsService.getEvents();
+    const result = (await eventsService.getEvents()).reverse();
     let queryResult = search(req.query, result);
     let paginationResult = queryResult;
     if (page) {
@@ -20,7 +20,7 @@ module.exports.getAllEvents = async (req, res) => {
       dataLength: queryResult.length,
       currentPageDataLength: paginationResult.length,
       pageLength: Math.ceil(queryResult.length / 10),
-      data: paginationResult.reverse(),
+      data: paginationResult,
     });
   } catch (error) {
     res.status(400).json({
