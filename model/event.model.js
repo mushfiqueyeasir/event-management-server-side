@@ -37,16 +37,16 @@ const eventSchema = mongoose.Schema(
       required: [true, "Please Provide Event Start Date!"],
     },
     startTime: {
-      type: Number,
+      type: String,
       required: [true, "Please Provide Event Start Time!"],
-      min: [1, "Minimum Time Must Be 1 o'clock"],
-      max: [24, "Maximum Time Must Be 24 o'clock"],
+      min: [1, "Minimum Start Time Must Be 4 Character"],
+      maxLength: [4, "Maximum  Start Time Must Be 4 Character"],
     },
     endTime: {
-      type: Number,
+      type: String,
       required: [true, "Please Provide Event Start Time!"],
-      min: [1, "Minimum Time Must Be 1 o'clock"],
-      max: [24, "Maximum Time Must Be 24 o'clock"],
+      min: [1, "Minimum End Time Must Be 4 Character"],
+      maxLength: [4, "Maximum End Time Must Be 4 Character"],
     },
     eventView: {
       type: Number,
