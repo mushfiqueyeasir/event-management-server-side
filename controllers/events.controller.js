@@ -8,16 +8,26 @@ module.exports.getAllEvents = async (req, res) => {
     let queryResult = search(req.query, result);
     let paginationResult = queryResult;
     let pageLength = Math.ceil(queryResult.length / 10);
+
+    if (rsvp === email) {
+      let rsvp = [];
+      result.forEach((element) => {
+        element.eventAttendees.forEach((item) => {
+          if (item.email === email) {
+            console.log(email);
+            rsvp.push(element);
+          }
+        });
+      });
+      queryResult = rsvp;
+      paginationResult = rsvp;
+    }
+
     if (page) {
       paginationResult = queryResult.slice(
         ((page ? page : 1) - 1) * 10,
         (page ? page : 1) * 10
       );
-    }
-    if (rsvp === email) {
-      queryResult = result;
-      paginationResult = result;
-      pageLength = 1;
     }
 
     res.status(200).json({
