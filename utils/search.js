@@ -1,6 +1,7 @@
 module.exports.search = (query, data) => {
-  const { search, startDate, endDate, email } = query;
+  const { search, email } = query;
   let paginationResult = data;
+
   if (email) {
     paginationResult = paginationResult.filter(
       (item) => item.eventCreator === email

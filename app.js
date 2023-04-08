@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(errorHandler);
 
 // Increase the maximum request size to 10MB
-app.use(bodyParser.json({ limit: "10mb" }));
-app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
+app.use(bodyParser.json({ limit: "100mb" }));
+app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
 // route
 const eventsRoutes = require("./routes/v1/events.routes");

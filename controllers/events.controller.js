@@ -3,15 +3,21 @@ const { search } = require("../utils/search");
 
 module.exports.getAllEvents = async (req, res) => {
   try {
-    const { page } = req.query;
+    const { page, rsvp, email } = req.query;
     const result = (await eventsService.getEvents()).reverse();
     let queryResult = search(req.query, result);
     let paginationResult = queryResult;
+    let pageLength = Math.ceil(queryResult.length / 10);
     if (page) {
       paginationResult = queryResult.slice(
         ((page ? page : 1) - 1) * 10,
         (page ? page : 1) * 10
       );
+    }
+    if (rsvp === email) {
+      queryResult = result;
+      paginationResult = result;
+      pageLength = 1;
     }
 
     res.status(200).json({
@@ -19,7 +25,7 @@ module.exports.getAllEvents = async (req, res) => {
       message: "Events Successfully Found!",
       dataLength: queryResult.length,
       currentPageDataLength: paginationResult.length,
-      pageLength: Math.ceil(queryResult.length / 10),
+      pageLength: pageLength,
       data: paginationResult,
     });
   } catch (error) {
