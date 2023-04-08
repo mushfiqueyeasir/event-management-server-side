@@ -2,7 +2,7 @@ module.exports.search = (query, data) => {
   const { rsvp, search, email } = query;
   let paginationResult = data;
 
-  if (rsvp === email) {
+  if (rsvp === email && rsvp) {
     let rsvp = [];
     data.forEach((element) => {
       element.eventAttendees.forEach((item) => {
