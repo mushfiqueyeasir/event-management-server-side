@@ -22,7 +22,7 @@ const eventSchema = mongoose.Schema(
       type: String,
       required: [true, "Please Provide Event Location!"],
       minLength: [3, "Event Location Must Be At Least 3 Characters!"],
-      maxLength: [30, "Event Location Must Be Maximum 30 Characters!"],
+      maxLength: [100, "Event Location Must Be Maximum 30 Characters!"],
     },
     eventCreator: {
       type: String,
